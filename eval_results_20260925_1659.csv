@@ -1,0 +1,185 @@
+﻿question,type,correct,reason,steps,tools_used,answer,reference
+How many job postings are in the database?,sql,True,"The assistant correctly states there are 20 job postings in the database, matching the reference data.",1,sql,There are **20 job postings** in the database.,"[{""jobs"": 20}]"
+What are the 5 most requested skills?,sql,True,All 5 skills and their job posting counts exactly match the reference data.,1,sql,"Here are the 5 most requested skills across the job postings:
+
+| Rank | Skill | Job Postings |
+|------|-----------|-------------|
+| 1 | LLMs | 20 |
+| 2 | APIs | 17 |
+| 3 | AI Agents | 16 |
+| 4 | Python | 16 |
+| 5 | SQL | 13 |
+
+LLMs is the top skill, appearing in 20 postings, followed closely by APIs (17) and a tie between AI Agents and Python (16 each). SQL rounds out the top 5 with 13 postings.","[{""skill"": ""LLMs"", ""jobs"": 20}, {""skill"": ""APIs"", ""jobs"": 17}, {""skill"": ""AI Agents"", ""jobs"": 16}, {""skill"": ""Python"", ""jobs"": 16}, {""skill"": ""SQL"", ""jobs"": 13}]"
+"How many jobs are remote, hybrid, and onsite?",sql,True,"The assistant correctly reports 17 remote and 3 hybrid jobs, and accurately notes 0 onsite positions, which is consistent with the reference data.",1,sql,"Here is the breakdown of job postings by work mode:
+
+| Work Mode | Jobs |
+|-----------|------|
+| Remote | 17 |
+| Hybrid | 3 |
+| Onsite | 0 |
+
+Out of 20 total postings, 17 are remote and 3 are hybrid. No onsite positions appear in the database.","[{""work_mode"": ""hybrid"", ""jobs"": 3}, {""work_mode"": ""remote"", ""jobs"": 17}]"
+How many jobs are there in each role category?,sql,True,All role categories and their job counts exactly match the reference data.,1,sql,"Here is the breakdown of jobs by role category across all 20 postings:
+
+| Role Category | Job Count |
+|---|---|
+| AI engineer | 10 |
+| AI automation | 4 |
+| other | 4 |
+| data scientist | 1 |
+| ML engineer | 1 |
+| **Total** | **20** |
+
+AI engineer is by far the most common category, accounting for half of all postings (10 out of 20). AI automation and other roles each have 4 postings, while data scientist and ML engineer have just 1 each.","[{""role_category"": ""AI automation"", ""jobs"": 4}, {""role_category"": ""AI engineer"", ""jobs"": 10}, {""role_category"": ""data scientist"", ""jobs"": 1}, {""role_category"": ""ML engineer"", ""jobs"": 1}, {""role_category"": ""other"", ""jobs"": 4}]"
+How many junior positions are there?,sql,True,"The assistant correctly identified 2 junior positions, matching the reference data.",1,sql,There are **2 junior positions** in the database.,"[{""junior_jobs"": 2}]"
+Which companies have more than one posting?,sql,True,The answer correctly identifies Acute Talent as the only company with more than one posting and accurately states it has 3 postings.,1,sql,"Only one company has more than one posting in the database: **Acute Talent**, with **3 postings**. All other companies appear only once.","[{""company"": ""Acute Talent"", ""jobs"": 3}]"
+How many postings require English?,sql,True,"The answer correctly identifies 11 English-only postings and 5 both-language postings, matching the reference data, and correctly calculates 16 total postings requiring English.",1,sql,"Out of 20 total postings:
+
+- **English only**: 11 postings
+- **Both (English + Spanish)**: 5 postings
+- **Spanish only**: 4 postings
+
+If you count postings where English is required in any form (either exclusively or alongside Spanish), that comes to **16 out of 20 postings** — 80% of the listings.","[{""language_required"": ""both"", ""jobs"": 5}, {""language_required"": ""english"", ""jobs"": 11}]"
+What percentage of postings ask for Python?,sql,True,"The assistant correctly states 16 out of 20 postings (80%) ask for Python, matching all reference values exactly.",1,sql,"**16 out of 20 postings (80%)** ask for Python.
+
+It is by far the most commonly required skill in this dataset. The remaining 4 postings either do not mention Python or list it under a different name.","[{""python_jobs"": 16, ""total_jobs"": 20, ""pct"": ""80.000000000000""}]"
+What is the average minimum years of experience for senior roles?,sql,True,"The assistant correctly states 5.2 years average and 5 job postings, matching the reference data exactly.",1,sql,"The average minimum years of experience required for senior roles is **5.2 years**, based on 5 postings that specified this information.
+
+Note that the figure excludes senior job postings where the minimum experience requirement was not stated.","[{""jobs"": 5, ""avg_min_years"": 5.2}]"
+How many postings list a salary?,sql,True,"The answer correctly states 2 postings list a salary out of 20 total, matching the reference data exactly.",1,sql,"Out of 20 total postings, only 2 include a salary figure (either a minimum, maximum, or both). The remaining 18 do not list any salary information.","[{""with_salary"": 2, ""total_jobs"": 20}]"
+"What is the highest salary offered, and for which job?",sql,True,"The answer correctly identifies the highest salary as 85,000 MXN for the React/JavaScript Developer – AI & Automation position at CobaltoTalent, matching the reference data.",1,sql,"The highest salary offered in the database is **85,000 MXN/month (gross)**, for the following position:
+
+- **Job title:** React/JavaScript Developer – AI & Automation
+- **Company:** CobaltoTalent
+- **Location:** Remote
+- **Seniority:** Mid
+- **Salary range:** 65,000 – 85,000 MXN/month
+
+This is based on the job with the highest `salary_max_mxn` among all postings that include salary information.","[{""job_title"": ""React/JavaScript Developer – AI & Automation"", ""company"": ""CobaltoTalent"", ""salary_min_mxn"": 65000, ""salary_max_mxn"": 85000}]"
+Which jobs ask for both LangChain and RAG?,sql,True,"The assistant lists all 7 correct job/company pairs matching the reference data exactly, with no omissions or incorrect additions.",1,sql,"7 jobs require both LangChain and RAG. Here are the results:
+
+| # | Job Title | Company | Location | Work Mode | Seniority |
+|---|-----------|---------|----------|-----------|-----------|
+| 1 | Generative AI Engineer | Acute Talent | Remote | Remote | Mid |
+| 2 | Generative AI Engineer | Acute Talent | Remote | Remote | Mid |
+| 3 | AI Engineer - Generative AI and Agents | Azumo | Remote | Remote | Senior |
+| 4 | Jr Gen AI Engineer | Capgemini | Remote | Remote | Junior |
+| 5 | Especialista en IA Generativa / LLM Engineer | Citi Value in Real Time | Remote | Remote | Senior |
+| 6 | Software Developer | Confidencial | Los Cabos | Hybrid | Mid |
+| 7 | Forward Deployment Engineer | DBSync Inc | Remote | Remote | Senior |
+
+Key observations:
+- 6 of 7 postings are fully remote; only one (Confidencial) is hybrid and based in Los Cabos.
+- Seniority skews mid to senior — only one junior role (Capgemini).
+- Acute Talent has two listings with identical titles, likely separate postings.","[{""job_title"": ""Generative AI Engineer"", ""company"": ""Acute Talent""}, {""job_title"": ""Jr Gen AI Engineer"", ""company"": ""Capgemini""}, {""job_title"": ""Software Developer"", ""company"": ""Confidencial""}, {""job_title"": ""Generative AI Engineer"", ""company"": ""Acute Talent""}, {""job_title"": ""AI Engineer - Generative AI and Agents"", ""company"": ""Azumo""}, {""job_title"": ""Especialista en IA Generativa / LLM Engineer"", ""company"": ""Citi Value in Real Time""}, {""job_title"": ""Forward Deployment Engineer"", ""company"": ""DBSync Inc""}]"
+What skills do AI automation roles ask for most?,sql,True,"The answer includes all five skills from the reference with correct counts (4 each), plus additional skills not contradicted by the reference.",2,sql,"Here are the most requested skills across all 4 AI automation postings:
+
+**Top skills (out of 4 postings)**
+
+| Skill | Postings |
+|---|---|
+| APIs | 4 |
+| AI Agents | 4 |
+| LLMs | 4 |
+| Prompt Engineering | 4 |
+| Python | 4 |
+| LangChain | 3 |
+| Git | 3 |
+| SQL | 3 |
+| AWS | 2 |
+| Docker | 2 |
+| Machine Learning | 2 |
+| Make | 2 |
+| n8n | 2 |
+| RAG | 2 |
+| LangGraph | 1 |
+
+**Key takeaways:**
+
+- **APIs, AI Agents, LLMs, Prompt Engineering, and Python** appear in every single AI automation posting — they are the core requirements for this role type.
+- **LangChain, Git, and SQL** are close behind, requested in 3 of 4 postings.
+- Automation-specific tools like **Make** and **n8n** appear in half the postings, showing demand for no-code/low-code workflow tools alongside code-heavy skills.
+- **RAG** and **LangGraph** round out the LLM ecosystem skills.
+
+Note: The sample is small (only 4 postings), so these figures reflect the current dataset rather than a broad industry trend.","[{""skill"": ""APIs"", ""jobs"": 4}, {""skill"": ""AI Agents"", ""jobs"": 4}, {""skill"": ""LLMs"", ""jobs"": 4}, {""skill"": ""Prompt Engineering"", ""jobs"": 4}, {""skill"": ""Python"", ""jobs"": 4}]"
+"On average, how many skills does each posting list?",sql,True,"The assistant correctly reports the average of 12.65 skills per posting, matching the reference data exactly.",1,sql,"Based on all 20 postings in the database, the average number of skills listed per posting is **12.65**, with a total of 253 skills across all jobs.","[{""avg_skills"": 12.65}]"
+Which remote jobs are junior level?,sql,True,"The answer correctly identifies the one remote junior-level job as 'Jr Gen AI Engineer' at Capgemini, matching the reference data exactly.",1,sql,"There is **1 remote junior-level job** in the database:
+
+| Job Title | Category | Company | Location | Salary (MXN) |
+|---|---|---|---|---|
+| Jr Gen AI Engineer | AI Engineer | Capgemini | Remote | Not stated |
+
+Only one posting matches the criteria of remote + junior. The salary was not disclosed in the posting.","[{""job_title"": ""Jr Gen AI Engineer"", ""company"": ""Capgemini""}]"
+Which postings describe working directly with external clients?,text,True,"The answer correctly identifies all three required client-facing roles (RevStar, DBSync Inc, and Toku) plus one additional role, which is acceptable as extra context.",1,search,"Based on the search results, here are the postings that most clearly describe working directly with external clients:
+
+---
+
+**1. Forward Deployment Engineer — DBSync Inc (job_id: 18)**
+Mentions prior experience embedded on-site with enterprise clients during implementation, and requires skills like running discovery workshops and explaining technical trade-offs to non-technical stakeholders.
+
+---
+
+**2. Databricks Forward Deployed Engineer (AI/ML) — RevStar (job_id: 4)**
+Explicitly states: ""Serve as the primary technical leader on strategic enterprise client engagements. Partner with C-level executives, VP/Directors of Data, and engineering teams to translate business challenges into high-performing technical solutions."" Also references building strategic alignment with client technical leadership.
+
+---
+
+**3. Forward Deployed Engineer / AI Engineer MX — Toku (job_id: 5)**
+Describes meeting periodically with clients to understand their processes, identify opportunities, and translate business needs into technological solutions (""Reunirse periódicamente con clientes para comprender sus procesos...""). Also mentions conducting discovery conversations with clients (""discoveries con clientes"").
+
+---
+
+**4. AI Engineer - Generative AI and Agents — Azumo (job_id: 14)**
+States directly: ""Work inside the client's environment. Their repositories, their standups, sometimes their customer calls.""
+
+---
+
+Those four postings are the clearest matches. The common thread is the ""Forward Deployed Engineer"" archetype, where the engineer works embedded within or closely alongside external client organizations. Azumo and Toku are particularly explicit about direct client interaction as a core part of the role.","Should identify at least these three client-facing roles: the Databricks Forward Deployed Engineer at RevStar, the Forward Deployment Engineer at DBSync Inc, and the Forward Deployed Engineer / AI Engineer at Toku."
+Does any posting require working in US time zones?,text,False,"The answer incorrectly classifies Azumo's AI Engineer posting as only mentioning US holidays rather than requiring US time zone alignment, directly contradicting the expected fact.",1,search,"Yes, several postings explicitly require or expect alignment with US time zones. Here is a summary of what the search found:
+
+1. **Knowledge Base Specialist - Elite Talent Recruitment (job_id 8)**
+   Requires ""ability to maintain working-hour overlap with U.S. Pacific, Mountain, or Central time zones."" Part-time, ~15-25 hours per week, remote.
+
+2. **Forward Deployment Engineer - DBSync Inc (job_id 18)**
+   States directly: ""Shift Timings: U.S. Shift (8:00 AM CST - 5:00 PM CST)."" Remote from Mexico/LATAM.
+
+3. **Payments Product Manager - Maxana (job_id 16)**
+   Requires ""overlap with US Eastern business hours."" Remote, based in Latin America.
+
+4. **Analytics Engineer - Homeward (job_id 13)**
+   Requires ""meaningful overlap with U.S. Central Time business hours."" Fully remote, LATAM-based contractor.
+
+Those four postings are the clearest cases. Two others mention US schedules/holidays in passing but not as a working-hours requirement:
+
+- **Full Stack Software Engineer - Utility Profit (job_id 19):** Observes U.S. company holidays, but no specific time zone requirement mentioned.
+- **AI Engineer - Azumo (job_id 14):** Mentions U.S. holidays as a benefit, not a schedule requirement.","Should mention Azumo (AI Engineer - Generative AI and Agents), which requires alignment with United States time zones."
+Do any postings mention on-call rotations?,text,True,"The answer correctly identifies Traackr's Software Engineer posting with the on-call rotation, including the accurate schedule detail, and any extra information about a second posting is additional context rather than contradicting the expected facts.",1,search,"The search found two postings that explicitly mention on-call duties:
+
+1. **Software Engineer at Traackr (job_id 17)** - Clearly states: ""Participate in an on-call rotation for two weeks every two months to ensure system reliability and timely issue resolution."" This is the only posting with a formal, scheduled on-call rotation.
+
+2. **Software Developer at Confidencial (job_id 9)** - Mentions on-call response in a less structured way: ""diagnose and resolve performance bottlenecks and outages, including on-call response for critical issues,"" but does not specify a rotation schedule.
+
+No other postings in the search results reference on-call expectations. These are the only two the search surfaced with relevant content.","Should mention Traackr (Software Engineer), which includes an on-call rotation (two weeks every two months)."
+What benefits does Klar offer?,text,True,"The answer includes all expected benefits: stock options, 15 days of paid vacation, 30-day aguinaldo (Christmas bonus), food vouchers, medical insurance, and Wellhub subscription, along with additional accurate details.",2,"search, sql","Klar (Klar Technologies SA de CV SFP) has 1 job posting in the database: **Data & AI Scientist**. The benefits listed in that posting are:
+
+**Compensation & Financial**
+- Competitive salary based on performance and experience
+- Stock options (chance of earning)
+- 30 days of Christmas bonus
+- Vacation premium
+- Food vouchers
+
+**Time Off**
+- 15 days of paid vacation per year
+- Extended maternity and paternity leaves
+
+**Health & Wellness**
+- Medical insurance
+- Wellhub subscription (mental and physical health)
+- Sponsored coaching and therapy sessions via Modern Health
+
+**Work Environment & Equipment**
+- Computer device provided
+- Modern, centrally located office in Mexico City with free drinks, snacks, and regular social events
+- International work environment","Should include most of these Klar benefits: stock options, 15 days of paid vacation, a 30-day aguinaldo (Christmas bonus), food vouchers, medical insurance, and a Wellhub subscription."

@@ -1,0 +1,58 @@
+[
+  {"question": "How many job postings are in the database?",
+   "gold_sql": "SELECT COUNT(*) AS jobs FROM dbo.jobs"},
+
+  {"question": "What are the 5 most requested skills?",
+   "gold_sql": "SELECT TOP 5 WITH TIES skill, COUNT(*) AS jobs FROM dbo.job_skills GROUP BY skill ORDER BY jobs DESC"},
+
+  {"question": "How many jobs are remote, hybrid, and onsite?",
+   "gold_sql": "SELECT work_mode, COUNT(*) AS jobs FROM dbo.jobs GROUP BY work_mode"},
+
+  {"question": "How many jobs are there in each role category?",
+   "gold_sql": "SELECT role_category, COUNT(*) AS jobs FROM dbo.jobs GROUP BY role_category"},
+
+  {"question": "How many junior positions are there?",
+   "gold_sql": "SELECT COUNT(*) AS junior_jobs FROM dbo.jobs WHERE seniority = 'junior'"},
+
+  {"question": "Which companies have more than one posting?",
+   "gold_sql": "SELECT company, COUNT(*) AS jobs FROM dbo.jobs GROUP BY company HAVING COUNT(*) > 1"},
+
+  {"question": "How many postings require English?",
+   "gold_sql": "SELECT language_required, COUNT(*) AS jobs FROM dbo.jobs WHERE language_required IN ('english', 'both') GROUP BY language_required"},
+
+  {"question": "What percentage of postings ask for Python?",
+   "gold_sql": "SELECT COUNT(DISTINCT s.job_id) AS python_jobs, (SELECT COUNT(*) FROM dbo.jobs) AS total_jobs, COUNT(DISTINCT s.job_id) * 100.0 / (SELECT COUNT(*) FROM dbo.jobs) AS pct FROM dbo.job_skills s WHERE s.skill = 'Python'"},
+
+  {"question": "What is the average minimum years of experience for senior roles?",
+   "gold_sql": "SELECT COUNT(*) AS jobs, AVG(CAST(experience_years_min AS FLOAT)) AS avg_min_years FROM dbo.jobs WHERE seniority = 'senior' AND experience_years_min IS NOT NULL"},
+
+  {"question": "How many postings list a salary?",
+   "gold_sql": "SELECT COUNT(*) AS with_salary, (SELECT COUNT(*) FROM dbo.jobs) AS total_jobs FROM dbo.jobs WHERE salary_min_mxn IS NOT NULL OR salary_max_mxn IS NOT NULL"},
+
+  {"question": "What is the highest salary offered, and for which job?",
+   "gold_sql": "SELECT TOP 1 WITH TIES job_title, company, salary_min_mxn, salary_max_mxn FROM dbo.jobs WHERE salary_max_mxn IS NOT NULL ORDER BY salary_max_mxn DESC"},
+
+  {"question": "Which jobs ask for both LangChain and RAG?",
+   "gold_sql": "SELECT job_title, company FROM dbo.jobs WHERE job_id IN (SELECT job_id FROM dbo.job_skills WHERE skill = 'LangChain') AND job_id IN (SELECT job_id FROM dbo.job_skills WHERE skill = 'RAG')"},
+
+  {"question": "What skills do AI automation roles ask for most?",
+   "gold_sql": "SELECT TOP 5 WITH TIES s.skill, COUNT(*) AS jobs FROM dbo.job_skills s JOIN dbo.jobs j ON j.job_id = s.job_id WHERE j.role_category = 'AI automation' GROUP BY s.skill ORDER BY jobs DESC"},
+
+  {"question": "On average, how many skills does each posting list?",
+   "gold_sql": "SELECT AVG(CAST(n AS FLOAT)) AS avg_skills FROM (SELECT job_id, COUNT(*) AS n FROM dbo.job_skills GROUP BY job_id) t"},
+
+  {"question": "Which remote jobs are junior level?",
+   "gold_sql": "SELECT job_title, company FROM dbo.jobs WHERE work_mode = 'remote' AND seniority = 'junior'"},
+
+  {"question": "Which postings describe working directly with external clients?",
+   "expected": "Should identify at least these three client-facing roles: the Databricks Forward Deployed Engineer at RevStar, the Forward Deployment Engineer at DBSync Inc, and the Forward Deployed Engineer / AI Engineer at Toku."},
+
+  {"question": "Does any posting require working in US time zones?",
+   "expected": "Should mention Azumo (AI Engineer - Generative AI and Agents), which requires alignment with United States time zones."},
+
+  {"question": "Do any postings mention on-call rotations?",
+   "expected": "Should mention Traackr (Software Engineer), which includes an on-call rotation (two weeks every two months)."},
+
+  {"question": "What benefits does Klar offer?",
+   "expected": "Should include most of these Klar benefits: stock options, 15 days of paid vacation, a 30-day aguinaldo (Christmas bonus), food vouchers, medical insurance, and a Wellhub subscription."}
+]
