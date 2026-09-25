@@ -86,4 +86,4 @@ Python, Claude API (tool use), SQL Server, n8n (self-hosted in Docker), ChromaDB
 | `eval.py`, `eval_questions.json` | Evaluation |
 | `schema.sql` | Tables and logins |
 
-Related project: [Job Market Analyzer](https://github.com/romelatg) (the original n8n + Power BI pipeline for data analyst postings)
+Related project: [Job Market Analyzer](https://github.com/romelatg/AI-Powered-Job-Market-Analyzer) (the original n8n + Power BI pipeline for data analyst postings)
