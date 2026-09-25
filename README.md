@@ -43,7 +43,7 @@ flowchart LR
 
 SQL questions are checked against hand-written reference queries. Text questions are checked against facts I verified in the original postings.
 
-The one failure: [explain what the time zone check showed, e.g. "the search missed the passage in the Azumo posting about US time zones" or "the expected answer was wrong: no posting mentions time zones, and an earlier chatbot answer had made it up"].
+The one failure was a text-search question about US time zones. I'm checking whether the search missed the relevant passage or the expected answer itself was wrong
 
 Full results: [`eval_results_20260925_1659.csv`](eval_results_20260925_1659.csv)
 
